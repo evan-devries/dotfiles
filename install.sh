@@ -13,7 +13,7 @@ backup_and_write() {
     cp "$dst" "$backup_dir/$(basename "$dst")"
     backup_used=1
   fi
-  printf '%s' "$content" > "$dst"
+  printf '%s\n' "$content" > "$dst"
   echo "Installed: $dst"
 }
 
@@ -48,6 +48,34 @@ print(json.dumps(merged, indent=4))
 PY
 )"
   backup_and_write "$vscode_dst" "$merged"
+fi
+
+# Claude Code statusline script
+claude_script_src="$repo_root/claude/statusline.sh"
+claude_script_dst="$HOME/.claude/statusline.sh"
+if [ -f "$claude_script_src" ]; then
+  backup_and_write "$claude_script_dst" "$(cat "$claude_script_src")"
+  chmod +x "$claude_script_dst"
+fi
+
+# Claude Code settings — merge managed keys (statusLine, tui) into existing file
+claude_settings_src="$repo_root/claude/settings.json"
+claude_settings_dst="$HOME/.claude/settings.json"
+if [ -f "$claude_settings_src" ]; then
+  merged="$(python3 - "$claude_settings_src" "$claude_settings_dst" <<'PY'
+import json, sys, os
+src, dst = sys.argv[1], sys.argv[2]
+with open(src, encoding="utf-8-sig") as f:
+    managed = json.load(f)
+existing = {}
+if os.path.exists(dst):
+    with open(dst, encoding="utf-8-sig") as f:
+        existing = json.load(f)
+existing.update(managed)
+print(json.dumps(existing, indent=2))
+PY
+)"
+  backup_and_write "$claude_settings_dst" "$merged"
 fi
 
 if [ "$backup_used" -eq 1 ]; then
