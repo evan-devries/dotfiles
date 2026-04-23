@@ -1,0 +1,8 @@
+# Managed by dotfiles/macos/zshrc — edit the repo file, then run install.sh.
+# Per-machine overrides go in ~/.zshrc.local (gitignored).
+
+if [[ $- == *i* ]]; then
+  eval "$(oh-my-posh init zsh --config "$(brew --prefix oh-my-posh)/themes/paradox.omp.json")"
+fi
+
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

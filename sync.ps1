@@ -70,13 +70,3 @@ if (Test-Path $termSystem) {
 else {
     Write-Warning "System file missing, skipping: $termSystem"
 }
-
-$code = Get-Command code -ErrorAction SilentlyContinue
-if ($code) {
-    $extensionsFile = Join-Path $repoRoot 'vscode\extensions.txt'
-    & code --list-extensions | Set-Content -Path $extensionsFile -Encoding utf8
-    Write-Host "Pulled: $extensionsFile"
-}
-else {
-    Write-Warning "'code' CLI not on PATH; skipping VS Code extensions list"
-}

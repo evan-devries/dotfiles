@@ -59,26 +59,6 @@ if (Test-Path $termRepo) {
     Backup-And-Write -Destination $termTarget -Content $json
 }
 
-$extensionsFile = Join-Path $repoRoot 'vscode\extensions.txt'
-if (Test-Path $extensionsFile) {
-    $code = Get-Command code -ErrorAction SilentlyContinue
-    if ($code) {
-        $installed = & code --list-extensions
-        $wanted = Get-Content $extensionsFile | Where-Object { $_ -and -not $_.StartsWith('#') }
-        $missing = $wanted | Where-Object { $installed -notcontains $_ }
-        foreach ($ext in $missing) {
-            Write-Host "Installing VS Code extension: $ext"
-            & code --install-extension $ext | Out-Null
-        }
-        if (-not $missing) {
-            Write-Host "VS Code extensions already up to date"
-        }
-    }
-    else {
-        Write-Warning "'code' CLI not on PATH; skipping VS Code extension install"
-    }
-}
-
 if (Test-Path $backupDir) {
     Write-Host ""
     Write-Host "Previous files backed up to: $backupDir"

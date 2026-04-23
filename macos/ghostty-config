@@ -1,0 +1,35 @@
+# Managed by dotfiles/macos/ghostty-config — edit the repo file, then run install.sh.
+
+# Font
+font-family = FiraCode Nerd Font
+font-size = 13
+font-feature = calt
+font-feature = liga
+font-feature = clig
+
+# Ayu Mirage theme
+background = 1F2430
+foreground = CBCCC6
+cursor-color = FFCC66
+selection-background = 34455A
+selection-foreground = CBCCC6
+
+# Normal colors
+palette = 0=#191E2A
+palette = 1=#ED8274
+palette = 2=#A6CC70
+palette = 3=#FAD07B
+palette = 4=#6DCBFA
+palette = 5=#CFBAFA
+palette = 6=#90E1C6
+palette = 7=#C7C7C7
+
+# Bright colors
+palette = 8=#686868
+palette = 9=#F28779
+palette = 10=#BAE67E
+palette = 11=#FFD580
+palette = 12=#73D0FF
+palette = 13=#D4BFFF
+palette = 14=#95E6CB
+palette = 15=#FFFFFF
