@@ -32,6 +32,12 @@ if [ -f "$zsh_src" ]; then
   backup_and_write "$HOME/.zshrc" "$(cat "$zsh_src")"
 fi
 
+# zsh login profile (PATH + brew shellenv)
+zprofile_src="$repo_root/macos/zprofile"
+if [ -f "$zprofile_src" ]; then
+  backup_and_write "$HOME/.zprofile" "$(cat "$zprofile_src")"
+fi
+
 # Ghostty config
 ghostty_src="$repo_root/macos/ghostty-config"
 ghostty_dst="$HOME/Library/Application Support/com.mitchellh.ghostty/config"

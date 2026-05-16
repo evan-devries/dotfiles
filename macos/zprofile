@@ -1,0 +1,5 @@
+# Managed by dotfiles/macos/zprofile — edit the repo file, then run install.sh.
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export PATH="$HOME/.local/bin:$PATH"
