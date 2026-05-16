@@ -5,6 +5,15 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 backup_dir="$repo_root/.backup/$(date +%Y%m%d-%H%M%S)"
 backup_used=0
 
+# Fonts (Homebrew casks) — Ghostty wants the Nerd Font, VS Code wants plain Fira Code
+if command -v brew >/dev/null 2>&1; then
+  for cask in font-fira-code font-fira-code-nerd-font; do
+    if ! brew list --cask "$cask" >/dev/null 2>&1; then
+      brew install --cask "$cask"
+    fi
+  done
+fi
+
 backup_and_write() {
   local dst="$1" content="$2"
   mkdir -p "$(dirname "$dst")"
