@@ -1,5 +1,8 @@
 # Managed by dotfiles/macos/ghostty-config — edit the repo file, then run install.sh.
 
+# Force login shells so ~/.zprofile (brew shellenv, PATH) runs in every tab.
+command = /bin/zsh --login
+
 # Font
 font-family = FiraCode Nerd Font
 font-size = 13
